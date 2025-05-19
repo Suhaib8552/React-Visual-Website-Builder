@@ -14,6 +14,10 @@ function Sidebar({ setElements }) {
     setElements((prev) => [...prev, { type, props }]);
   };
 
+  const handleDragStart = (e, type, props = {}) => {
+  e.dataTransfer.setData("Dragdata", JSON.stringify({ type, props }));
+};
+
   return (
     <div className="sidebar">
       <div className="sidebar-heading">
@@ -47,7 +51,8 @@ function Sidebar({ setElements }) {
               <>
                 <li
                 draggable={true}
-                onDragStart={(e)=>e.dataTransfer.setData("Dragdata",JSON.stringify({type:"Text",props:{type: "h1",fs: "32px",fw: "600",txt: "Add a heading",}}))}
+                onDragStart={(e)=>handleDragStart(e,"Text",{type: "h1",fs: "32px",fw: "600",txt: "Add a heading",})}
+                
                   onClick={() =>
                     handleAddElement("Text", {
                       type: "h1",
@@ -61,10 +66,8 @@ function Sidebar({ setElements }) {
                 </li>
                 <li
                 draggable={true}
-                onDragStart={(e)=>e.dataTransfer.setData("Dragdata",JSON.stringify({type:"Text",props:{type: "h2",
-                      fs: "24px",
-                      fw: "300",
-                      txt: "Add a Subheading",}}))}
+                onDragStart={(e)=>handleDragStart(e,"Text",{type: "h2",fs: "24px",fw: "300",txt: "Add a Subheading",})}
+                
                   onClick={() =>
                     handleAddElement("Text", {
                       type: "h2",
@@ -83,10 +86,8 @@ function Sidebar({ setElements }) {
                 </li>
                 <li
                 draggable={true}
-                onDragStart={(e)=>e.dataTransfer.setData("Dragdata",JSON.stringify({type:"Text",props:{type: "p",
-                      fs: "16px",
-                      fw: "200",
-                      txt: "Add a paragraph",}}))}
+                onDragStart={(e)=>handleDragStart(e,"Text",{type: "p",fs: "16px",fw: "200",txt: "Add a paragraph",})}
+                
                   onClick={() =>
                     handleAddElement("Text", {
                       type: "p",
@@ -110,8 +111,8 @@ function Sidebar({ setElements }) {
               <>
                 <li
                 draggable={true}
-                onDragStart={(e)=>e.dataTransfer.setData("Dragdata",JSON.stringify({type:"Input",props:{type: "text",
-                      placeholder: "Enter the text",}}))}
+                onDragStart={(e)=>handleDragStart(e,"Input",{type: "text",placeholder: "Enter the text",})}
+                
                   onClick={() =>
                     handleAddElement("Input", {
                       type: "text",
@@ -123,8 +124,8 @@ function Sidebar({ setElements }) {
                 </li>
                 <li
                 draggable={true}
-                onDragStart={(e)=>e.dataTransfer.setData("Dragdata",JSON.stringify({type:"Input",props:{type: "date",
-                      placeholder: "Enter the date",}}))}
+                onDragStart={(e)=>handleDragStart(e,"Input",{type: "date",placeholder: "Enter the date",})}
+                
                   onClick={() =>
                     handleAddElement("Input", {
                       type: "date",
@@ -136,8 +137,8 @@ function Sidebar({ setElements }) {
                 </li>
                 <li
                 draggable={true}
-                onDragStart={(e)=>e.dataTransfer.setData("Dragdata",JSON.stringify({type:"Input",props:{type: "number",
-                      placeholder: "Enter the number",}}))}
+                onDragStart={(e)=>handleDragStart(e,"Input",{type: "number",placeholder: "Enter the number",})}
+                
                   onClick={() =>
                     handleAddElement("Input", {
                       type: "number",
@@ -154,13 +155,15 @@ function Sidebar({ setElements }) {
               <>
                 <li
                 draggable={true}
-                onDragStart={(e)=>e.dataTransfer.setData("Dragdata",JSON.stringify({type:"Form",props:{}}))}
+                onDragStart={(e)=>handleDragStart(e,"Form",{})}
+                
                  onClick={() => handleAddElement("Form")}>
                   <Form />
                 </li>
                 <li
                 draggable={true}
-                onDragStart={(e)=>e.dataTransfer.setData("Dragdata",JSON.stringify({type:"SignupForm",props:{}}))}
+                onDragStart={(e)=>handleDragStart(e,"Signupform",{})}
+                
                  onClick={() => handleAddElement("Signupform")}>
                   <Signupform />
                 </li>
